@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static Methods</title>
+  </head>
+  <body>
+    <script>
+      class dateUtils {
+        static formatDate(day, month, year) {
+          return day, month, year;
+        }
+
+        static day(DD) {
+          return DD < 32;
+        }
+
+        static month(MM) {
+          return MM <= 12;
+        }
+
+        static year(YYYY) {
+          return YYYY < 2027;
+        }
+      }
+
+      const currentDate = dateUtils.formatDate();
+      console.log(currentDate);
+      console.log(dateUtils.day(5));
+      console.log(dateUtils.month(17));
+      console.log(dateUtils.year(2026));
+    </script>
+  </body>
+</html>

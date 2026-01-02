@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classes & Encapsulation</title>
+  </head>
+  <body>
+    <script>
+      class Book {
+        title = "Middlemarch";
+        #isBorrowed = "Kindred";
+
+        constructor(title, isBorrowed) {
+          this.title = title;
+          this.#isBorrowed = isBorrowed;
+        }
+
+        borrow() {
+          console.log("borrowed");
+          this.#logStatus;
+        }
+
+        returnBook() {
+          console.log("returned");
+          this.#logStatus;
+        }
+
+        getStatus() {
+          this.returnBook();
+          this.#logStatus();
+        }
+
+        #logStatus() {
+          console.log("is now borrowed");
+        }
+      }
+
+      const myBook = new Book();
+      myBook.getStatus();
+
+      class EBook extends Book {
+        constructor(title, isBorrowed) {
+          super(title, isBorrowed);
+        }
+        fileSizeMB = "1024MB";
+
+        download() {
+          console.log("Download File");
+        }
+
+        borrow() {
+          console.log("File can also be downloaded");
+        }
+
+        status() {
+          this.borrow();
+        }
+      }
+      const myEBook = new EBook();
+      myEBook.status();
+
+      class Magazine extends Book {
+        #issueNumber = "1234";
+
+        #readIssue() {
+          console.log("What is the issue?");
+        }
+
+        book() {
+          this.#readIssue();
+        }
+      }
+
+      const myMagazine = new Magazine();
+      myMagazine.book();
+
+      class LibraryService {
+        constructor(books) {
+          this.books = books;
+        }
+        addBook(book) {
+          return this.books.addBook();
+        }
+        listBooks() {
+          return this.books.listBooks();
+        }
+      }
+
+      class LibraryController {
+        constructor(LibraryService) {
+          this.LibraryService = LibraryService;
+        }
+        addBook(book) {
+          return {
+            book: "Harry Potter",
+          };
+        }
+        listBooks() {
+          return this.books.listBooks();
+        }
+      }
+      const libraryService = new LibraryService();
+      const libraryController = new LibraryController(libraryService);
+      const book1 = new Book("Harry Potter");
+      const ebook1 = new EBook("JavaScript Guide", 5);
+      libraryController.addBook(book1);
+      libraryController.addBook(ebook1);
+      console.log(libraryController.addBook());
+    </script>
+  </body>
+</html>
