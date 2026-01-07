@@ -9,31 +9,31 @@
     <script>
       class Book {
         title = "Middlemarch";
-        #isBorrowed = "Kindred";
+        #isBorrowed = false;
 
         constructor(title, isBorrowed) {
-          this.title = title;
-          this.#isBorrowed = isBorrowed;
+          this.title = "Middlemarch";
+          this.#isBorrowed = false;
+        }
+
+        #logStatus() {
+          console.log(`${this.title} is now ${this.getStatus()}`);
         }
 
         borrow() {
           console.log("borrowed");
-          this.#logStatus;
+          this.#logStatus();
         }
 
         returnBook() {
           console.log("returned");
-          this.#logStatus;
-        }
-
-        getStatus() {
-          this.returnBook();
           this.#logStatus();
         }
 
-        #logStatus() {
-          console.log("is now borrowed");
+        getStatus() {
+          return this.#isBorrowed ? "borrowed" : "available";
         }
+
       }
 
       const myBook = new Book();
@@ -50,25 +50,22 @@
         }
 
         borrow() {
+          super.borrow();
           console.log("File can also be downloaded");
-        }
-
-        status() {
-          this.borrow();
         }
       }
       const myEBook = new EBook();
-      myEBook.status();
+      myEBook.borrow();
 
       class Magazine extends Book {
-        #issueNumber = "1234";
+        issueNumber = "1234";
 
-        #readIssue() {
+        readIssue() {
           console.log("What is the issue?");
         }
 
         book() {
-          this.#readIssue();
+          this.readIssue();
         }
       }
 
